@@ -27,9 +27,11 @@ const Ccp = () => {
     // Subscribe to the chat session
     // *******
     function getEvents(contact, agentChatSession) {
-        console.log(agentChatSession);
+        console.log("agent session is",agentChatSession, contact);
         contact.getAgentConnection().getMediaController().then(controller => {
+            
             controller.onMessage(messageData => {
+                console.log("message are", messageData);
                 if (messageData.chatDetails.participantId === messageData.data.ParticipantId) {
                     console.log(`CDEBUG ===> Agent ${messageData.data.DisplayName} Says`,
                         messageData.data.Content)
