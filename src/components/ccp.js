@@ -46,7 +46,7 @@ const Ccp = () => {
     // *******
     async function processChatText(content, type, contactId) {
         // Check if we know the language for this contactId, if not use dectectText(). This process means we only perform comprehend language detection at most once.
-        console.log(type);
+        console.log("content recieved from chat ",content, type);
         let textLang = '';
           for(var i = 0; i < languageTranslate.length; i++) {
                 if (languageTranslate[i].contactId === contactId) {
@@ -80,6 +80,7 @@ const Ccp = () => {
             content: <p>{content}</p>,
             translatedMessage: <p>{translatedMessage}</p>
         };
+    console.log("data after translation is ", data2);
         // Add the new message to the store
         addChat(prevMsg => [...prevMsg, data2]);
     }
