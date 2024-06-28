@@ -20,7 +20,7 @@ const Ccp = () => {
     const [setRefreshChild] = useState([]);
 
     console.log(lang)
-    console.log(currentContactId)
+    console.log(" current chat is ",currentContactId);
     //console.log(Chats)
 
     // *******
