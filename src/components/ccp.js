@@ -120,7 +120,7 @@ const Ccp = () => {
                     const cnn = contact.getConnections().find(cnn => cnn.getType() === window.connect.ConnectionType.AGENT);
                     const agentChatSession = await cnn.getMediaController();
                     console.log("sessions before setting ", uniqueContactIds);
-                    setUniqueContacts([...uniqueContactIds, contact.contactId]);
+                    setUniqueContacts((prevChats) => [...prevChats, contact.contactId]);
                     setCurrentContactId(contact.contactId)
                     // Save the session to props, this is required to send messages within the chatroom.js
                     setAgentChatSessionState(agentChatSessionState => [...agentChatSessionState, {[contact.contactId] : agentChatSession}])
