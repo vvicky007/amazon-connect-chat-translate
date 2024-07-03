@@ -60,7 +60,7 @@ const Ccp = () => {
         // If the contatId was not found in the store, or the store is empty, perform dectText API to comprehend
         if (localLanguageTranslate.length === 0 || textLang === ''){
             let tempLang = await detectText(content);
-            textLang = tempLang.textInterpretation.language
+            // textLang = tempLang.textInterpretation.language
         }
 
 
@@ -127,13 +127,13 @@ const Ccp = () => {
                 
                     // Get the language from the attributes, if the value is valid then add to the store
                     localLanguageTranslate = contact.getAttributes().x_lang.value
-                    if (Object.keys(languageOptions).find(key => languageOptions[key] === localLanguageTranslate) !== undefined){
-                        console.log("CDEBUG ===> Setting lang code from attribites:", localLanguageTranslate)
-                        languageTranslate.push({contactId: contact.contactId, lang: localLanguageTranslate})
-                        setLanguageTranslate(languageTranslate);
-                        setRefreshChild('updated') // Workaround to force a refresh of the chatroom UI to show the updated language based on contact attribute.
+                    // if (Object.keys(languageOptions).find(key => languageOptions[key] === localLanguageTranslate) !== undefined){
+                    //     console.log("CDEBUG ===> Setting lang code from attribites:", localLanguageTranslate)
+                    //     languageTranslate.push({contactId: contact.contactId, lang: localLanguageTranslate})
+                    //     setLanguageTranslate(languageTranslate);
+                    //     setRefreshChild('updated') // Workaround to force a refresh of the chatroom UI to show the updated language based on contact attribute.
                 
-                    }
+                    // }
                     console.log("CDEBUG ===> onAccepted, languageTranslate ", languageTranslate)
                     
                 });
