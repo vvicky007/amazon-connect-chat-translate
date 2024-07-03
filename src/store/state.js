@@ -80,6 +80,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
         'Vietnamese':'vi',
         'Welsh':'cy'
     },
+    uniqueContactIds: []
 });
 
 export const addChat = (Chats, contactId) => {
@@ -92,11 +93,16 @@ export const clearChat = () => {
 
 
 export const setLanguageTranslate = (state) => {
-        setGlobalState("languageTranslate", state);
+    setGlobalState("languageTranslate", state);
 };
 
 export const setCurrentContactId = (contactId) => {
     setGlobalState("currentContactId", contactId);
 };
+
+export const setUniqueContacts = (contacts) => {
+    console.log('setting contacts', contacts);
+    setGlobalState('uniqueContactIds', contacts);
+}
 
 export { useGlobalState };
