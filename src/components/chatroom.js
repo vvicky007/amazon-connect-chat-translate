@@ -148,7 +148,9 @@ const Chatroom = (props) => {
       </div>
       <ul className="chats" ref={messageEl}>
         {Chats.map((chat) => {
-          return <Message chat={chat} user={agentUsername} />;
+          if (chat.contactId === currentContactId[0]) {
+            return <Message chat={chat} user={agentUsername} />;
+          }
         })}
       </ul>
       <form className="input" onSubmit={handleSubmit}>
