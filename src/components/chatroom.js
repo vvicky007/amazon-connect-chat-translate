@@ -27,14 +27,11 @@ const Chatroom = (props) => {
     }
 
     const sendMessage = async(session, content) => {
-        console.log('message being sent to session', session, content);
-        // const awsSdkResponse = await session.sendMessage({
-        //     contentType: "text/plain",
-        //     message: content
-        // });
-    
-        // const { AbsoluteTime, Id } = awsSdkResponse.data;
-        // console.log(AbsoluteTime, Id);
+        console.log('message being sent to session', session);
+        const awsSdkResponse = await session.sendMessage({
+            contentType: "text/plain",
+            message: content
+        });
     }
 
     useEffect(() => {
