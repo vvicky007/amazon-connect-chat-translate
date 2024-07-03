@@ -5,7 +5,7 @@ import awsconfig from '../aws-exports';
 import Chatroom from './chatroom';
 import translateText from './translate'
 import detectText from './detectText'
-import { addChat, setLanguageTranslate, clearChat, useGlobalState, setCurrentContactId } from '../store/state';
+import { addChat, setLanguageTranslate, clearChat, useGlobalState, setCurrentContactId, setUniqueContacts } from '../store/state';
 
 Amplify.configure(awsconfig);
 

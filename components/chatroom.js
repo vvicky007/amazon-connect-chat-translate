@@ -17,7 +17,7 @@ const Chatroom = (props) => {
   const messageEl = useRef(null);
   const input = useRef(null);
 
-  console.log("chats are ", Chats, uniqueContactIds);
+  console.log("chats are test", Chats, uniqueContactIds);
 
   function getKeyByValue(object) {
     let obj = languageTranslate.find(

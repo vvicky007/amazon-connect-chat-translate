@@ -101,6 +101,7 @@ export const setCurrentContactId = (contactId) => {
 };
 
 export const setUniqueContacts = (contacts) => {
+    console.log('setting contacts', contacts);
     setGlobalState('uniqueContactIds', contacts);
 }
 
