@@ -21,7 +21,7 @@ const Ccp = () => {
     const [uniqueContactIds] = useGlobalState('uniqueContactIds');
 
     console.log(lang)
-    console.log(" current chat is ",currentContactId);
+    console.log(" current chat is ",currentContactId, uniqueContactIds);
     console.log(Chats);
 
     // *******
@@ -119,9 +119,9 @@ const Ccp = () => {
                     console.log("CDEBUG ===> onAccepted: ", contact);
                     const cnn = contact.getConnections().find(cnn => cnn.getType() === window.connect.ConnectionType.AGENT);
                     const agentChatSession = await cnn.getMediaController();
+                    console.log("sessions before setting ", uniqueContactIds);
                     setUniqueContacts([...uniqueContactIds, contact.contactId]);
                     setCurrentContactId(contact.contactId)
-                    console.log("CDEBUG ===> agentChatSession ", agentChatSession)
                     // Save the session to props, this is required to send messages within the chatroom.js
                     setAgentChatSessionState(agentChatSessionState => [...agentChatSessionState, {[contact.contactId] : agentChatSession}])
                 
