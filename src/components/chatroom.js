@@ -11,14 +11,13 @@ const Chatroom = (props) => {
   const [newMessage, setNewMessage] = useState("");
   const [languageTranslate] = useGlobalState("languageTranslate");
   const [languageOptions] = useGlobalState("languageOptions");
+  const [uniqueContactIds] = useGlobalState("uniqueContactIds");
+
   const agentUsername = "AGENT";
   const messageEl = useRef(null);
   const input = useRef(null);
-  const uniqueContactIds = {};
-  Chats.forEach((chat) => {
-    uniqueContactIds[chat.contactId] = true;
-  });
-  console.log("chats are ", Chats, uniqueContactIds);
+
+  console.log("chats are test", Chats, uniqueContactIds);
 
   function getKeyByValue(object) {
     let obj = languageTranslate.find(
@@ -132,7 +131,7 @@ const Chatroom = (props) => {
           maxWidth: "100%",
         }}
       >
-        {Object.keys(uniqueContactIds).map((contactId) => (
+        {uniqueContactIds.map((contactId) => (
           <div
             key={contactId}
             style={{
@@ -148,13 +147,9 @@ const Chatroom = (props) => {
         ))}
       </div>
       <ul className="chats" ref={messageEl}>
-        {
-          // iterate over the Chats, and only display the messages for the currently active chat session
-          Chats.map((chat) => {
-            if (chat.contactId === currentContactId[0])
-              return <Message chat={chat} user={agentUsername} />;
-          })
-        }
+        {Chats.map((chat) => {
+          return <Message chat={chat} user={agentUsername} />;
+        })}
       </ul>
       <form className="input" onSubmit={handleSubmit}>
         <input
