@@ -75,7 +75,7 @@ const Ccp = () => {
                 
         // Translate the customer message into English.
         // let translatedMessage = await translateText(content, 'en', 'en');
-        console.log(`CDEBUG ===>  Original Message: ` + content + `\n Translated Message: ` + translatedMessage);
+        console.log(`CDEBUG ===>  Original Message: ` + content + `\n Translated Message: `);
         // create the new message to add to Chats.
         let data2 = {
             contactId: contactId,
