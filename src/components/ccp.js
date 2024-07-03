@@ -5,7 +5,7 @@ import awsconfig from '../aws-exports';
 import Chatroom from './chatroom';
 import translateText from './translate'
 import detectText from './detectText'
-import { addChat, setLanguageTranslate, clearChat, useGlobalState, setCurrentContactId } from '../store/state';
+import { addChat, setLanguageTranslate, clearChat, useGlobalState, setCurrentContactId, setUniqueContacts } from '../store/state';
 
 Amplify.configure(awsconfig);
 
@@ -18,6 +18,7 @@ const Ccp = () => {
     const [languageOptions] = useGlobalState('languageOptions');
     const [agentChatSessionState, setAgentChatSessionState] = useState([]);
     const [setRefreshChild] = useState([]);
+    const [uniqueContactIds] = useGlobalState('uniqueContactIds');
 
     console.log(lang)
     console.log(" current chat is ",currentContactId);
@@ -94,7 +95,7 @@ const Ccp = () => {
         window.connect.core.onViewContact(function(event) {
             var contactId = event.contactId;
             console.log("CDEBUG ===> onViewContact", contactId)
-            setCurrentContactId(contactId);    
+            setCurrentContactId(contactId);  
           });
 
         console.log("CDEBUG ===> subscribeConnectEvents");
@@ -118,6 +119,7 @@ const Ccp = () => {
                     console.log("CDEBUG ===> onAccepted: ", contact);
                     const cnn = contact.getConnections().find(cnn => cnn.getType() === window.connect.ConnectionType.AGENT);
                     const agentChatSession = await cnn.getMediaController();
+                    setUniqueContacts([...uniqueContactIds, contact.contactId]);
                     setCurrentContactId(contact.contactId)
                     console.log("CDEBUG ===> agentChatSession ", agentChatSession)
                     // Save the session to props, this is required to send messages within the chatroom.js
