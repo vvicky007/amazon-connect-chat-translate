@@ -64,7 +64,7 @@ const Ccp = () => {
         }
 
 
-         Update (or Add if new contactId) the store with the the language code
+         // Update (or Add if new contactId) the store with the the language code
          function upsert(array, item) { // (1)
             const i = array.findIndex(_item => _item.contactId === item.contactId);
             if (i > -1) array[i] = item; // (2)
