@@ -50,38 +50,38 @@ const Ccp = () => {
     async function processChatText(content, type, contactId) {
         // Check if we know the language for this contactId, if not use dectectText(). This process means we only perform comprehend language detection at most once.
         // console.log("content received from chat ",content, type);
-        // let textLang = '';
-        //   for(var i = 0; i < languageTranslate.length; i++) {
-        //         if (languageTranslate[i].contactId === contactId) {
-        //             textLang = languageTranslate[i].lang
-        //              break
-        //         } 
-        // }
-        // // If the contatId was not found in the store, or the store is empty, perform dectText API to comprehend
-        // if (localLanguageTranslate.length === 0 || textLang === ''){
-        //     let tempLang = await detectText(content);
-        //     // textLang = tempLang.textInterpretation.language
-        // }
+        let textLang = '';
+          for(var i = 0; i < languageTranslate.length; i++) {
+                if (languageTranslate[i].contactId === contactId) {
+                    textLang = languageTranslate[i].lang
+                     break
+                } 
+        }
+        // If the contatId was not found in the store, or the store is empty, perform dectText API to comprehend
+        if (localLanguageTranslate.length === 0 || textLang === ''){
+            let tempLang = await detectText(content);
+            // textLang = tempLang.textInterpretation.language
+        }
 
 
-         // Update (or Add if new contactId) the store with the the language code
-        //  function upsert(array, item) { // (1)
-        //     const i = array.findIndex(_item => _item.contactId === item.contactId);
-        //     if (i > -1) array[i] = item; // (2)
-        //     else array.push(item);
-        //   }
-        // upsert(languageTranslate, {contactId: contactId, lang: textLang})
-        // setLanguageTranslate(languageTranslate);
+         Update (or Add if new contactId) the store with the the language code
+         function upsert(array, item) { // (1)
+            const i = array.findIndex(_item => _item.contactId === item.contactId);
+            if (i > -1) array[i] = item; // (2)
+            else array.push(item);
+          }
+        upsert(languageTranslate, {contactId: contactId, lang: textLang})
+        setLanguageTranslate(languageTranslate);
                 
         // Translate the customer message into English.
-        // let translatedMessage = await translateText(content, 'en', 'en');
+        let translatedMessage = await translateText(content, 'en', 'en');
         console.log(`CDEBUG ===>  Original Message: ` + content + `\n Translated Message: `);
         // create the new message to add to Chats.
         let data2 = {
             contactId: contactId,
             username: 'customer',
             content: <p>{content}</p>,
-            translatedMessage: <p>hard code message</p>
+            translatedMessage: <p>{translatedMessage}</p>
         };
         console.log("data after translation is ", data2);
         // Add the new message to the store
